@@ -1,3 +1,5 @@
+import constants
+
 from argparse import ArgumentParser, ArgumentTypeError
 import re
 
@@ -20,6 +22,11 @@ def port(arg: str) -> int:
     except ValueError:
         raise ArgumentTypeError(f"Invalid port '{arg}'")
 
+    if port > 65535:
+        raise ArgumentTypeError("Port is too high, must be below 65535")
+    if port in constants.INVALID_PORTS:
+        raise ArgumentTypeError("Should not use standardized ports")
+
     return arg
 
 
@@ -36,12 +43,14 @@ def parse_args():
     parser.add_argument(
         "--ip",
         type=ip,
+        default="0.0.0.0",
         help="IP"
     )
 
     parser.add_argument(
         "-p", "--port",
         type=port,
+        default=1512,
         help="Port"
     )
 

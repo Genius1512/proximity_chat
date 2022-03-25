@@ -1,7 +1,7 @@
 from arg_parse import parse_args
-import client
+from client import Client
 import logger
-import server
+from server import Server
 
 
 # globals
@@ -14,16 +14,15 @@ def main():
     """
     args = parse_args()
 
-    match args.mode:
-        case "server":
-            logger.log("Is server")
+    if args.mode == "server":
+        logger.log("Is server")
 
-            server = server.Server(args.ip, args.port)
+        server = Server(args.ip, args.port)
 
-        case "client":
-            logger.log("Is client")
+    elif args.mode == "client":
+        logger.log("Is client")
 
-            client = client.Client()
+        client = Client(args.ip, args.port)
 
 
 if __name__ == "__main__":
