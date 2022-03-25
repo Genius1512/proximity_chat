@@ -1,12 +1,15 @@
-import logging
+import logger
 
 
-logger = logging.Logger("Core")
+# globals
+logger = logger.Logger("Core")
 
 
 def main():
-	logger.log("Hello, ", "World!")
+    logger.log("Hello,", "World!")
+    logger.warning("Hello,", "World!")
+    logger.error("Hello,", "World!")
 
 
 if __name__ == "__main__":
-	main()
+    main()
