@@ -1,4 +1,7 @@
+from arg_parse import parse_args
+import client
 import logger
+import server
 
 
 # globals
@@ -6,9 +9,21 @@ logger = logger.Logger("Core")
 
 
 def main():
-    logger.log("Hello,", "World!")
-    logger.warning("Hello,", "World!")
-    logger.error("Hello,", "World!")
+    """
+    Entry point
+    """
+    args = parse_args()
+
+    match args.mode:
+        case "server":
+            logger.log("Is server")
+
+            server = server.Server(args.ip, args.port)
+
+        case "client":
+            logger.log("Is client")
+
+            client = client.Client()
 
 
 if __name__ == "__main__":
