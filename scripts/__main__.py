@@ -1,5 +1,11 @@
+import logging
+
+
+logger = logging.Logger("Core")
+
+
 def main():
-	pass
+	logger.log("Hello, ", "World!")
 
 
 if __name__ == "__main__":
